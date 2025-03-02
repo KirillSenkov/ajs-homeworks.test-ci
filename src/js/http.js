@@ -5,3 +5,8 @@ export function httpGet(url) {
 export function httpPost(url) {
   throw new Error(url);
 }
+
+export default function fetchData(url) {
+  url = 'Mock this!';
+  throw new Error(url);
+}

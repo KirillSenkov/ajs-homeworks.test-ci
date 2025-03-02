@@ -1,23 +1,20 @@
-import * as http from '../http';
+import fetchData, {  httpGet, httpPost } from '../http';
 
 test('httpGet should throw an error with the given URL', () => {
   const url = 'http://server:8080';
 
-  expect(() => http.httpGet(url)).toThrow(url);
+  expect(() => httpGet(url)).toThrow(url);
 });
 
 
 test('httpPost should throw an error with the given URL', () => {
   const url = 'http://server:8080';
 
-  expect(() => http.httpPost(url)).toThrow(url);
+  expect(() => httpPost(url)).toThrow(url);
 });
 
-/*
-export function httpGet(url) {
-  throw new Error(url);
-  }
-  
-  export function httpPost(url) {
-  throw new Error(url);
-  }*/
+test('fetchData should throw an error with the "given URL"', () => {
+  const url = 'Mock this!';
+
+  expect(() => fetchData(url)).toThrow(url);
+});

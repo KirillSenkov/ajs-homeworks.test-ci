@@ -1,4 +1,5 @@
-import { paintHealthBar, sortHeroesByHealth  } from '../app.js';
+import { paintHealthBar, sortHeroesByHealth, getLevel } from '../app.js';
+import fetchData from '../http.js';
 
 test.each([
   [{ name: 'Цой', health: 100 }, 'healthy'],
@@ -26,3 +27,22 @@ test('should sort heroes order by heals desc', () => {
   
     expect(sortHeroesByHealth(data)).toEqual(result);
   });
+
+// *
+jest.mock('../http.js');
+
+describe('getLevel', () => {
+  test('should return the level if it is ok', () => {
+    fetchData.mockReturnValue({ status: 'ok', level: 10 });
+
+    const result = getLevel(1);
+    expect(result).toBe('Ваш текущий уровень: 10');
+  });
+
+  test('should return some exquse if it is not really ok', () => {
+    fetchData.mockReturnValue({ status: 'not really ok' });
+
+    const result = getLevel(2);
+    expect(result).toBe('Информация об уровне временно недоступна');
+  });
+});
