@@ -1,8 +1,12 @@
 
-const path = require('node:path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+import path from 'node:path';
+import HtmlWebPackPlugin from 'html-webpack-plugin';
+import { fileURLToPath } from 'url';
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default {
   output: {
     path: path.resolve(__dirname, 'dist'),
   },
